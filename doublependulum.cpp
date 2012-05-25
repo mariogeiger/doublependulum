@@ -5,6 +5,11 @@
 DoublePendulum::DoublePendulum(QWidget *parent)
     : QWidget(parent)
 {
+    QPalette pal = palette();
+    pal.setColor(backgroundRole(), Qt::gray);
+    setPalette(pal);
+    setAutoFillBackground(true);
+
     resize(600, 600);
     thr.start();
     startTimer(0);
