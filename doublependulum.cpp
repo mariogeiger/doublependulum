@@ -4,8 +4,8 @@
 
 DoublePendulum::DoublePendulum(QWidget *parent)
     : QWidget(parent),
-      thr(1.0e-6),
-      thr2(10.0e-6)
+      thr(10000),
+      thr2(1000)
 {
     QPalette pal = palette();
     pal.setColor(backgroundRole(), Qt::gray);

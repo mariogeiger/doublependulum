@@ -6,7 +6,7 @@
 class DoublePendulumThread
 {
 public:
-    explicit DoublePendulumThread(qreal dt = 500e-6);
+    explicit DoublePendulumThread(int n = 1000);
 
     void getA1A2(qreal *_a1, qreal *_a2);
 
@@ -29,7 +29,7 @@ private:
     qreal _l1;
     qreal _l2;
 
-    qreal _dt;
+    int _n;
 };
 
 #endif // SIMPHYTHREAD_H

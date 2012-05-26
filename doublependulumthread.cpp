@@ -2,14 +2,14 @@
 #include <cmath>
 #include <QTime>
 
-DoublePendulumThread::DoublePendulumThread(qreal dt) :
+DoublePendulumThread::DoublePendulumThread(int n) :
     _a1(0.0), _b1(0.0),
     _a2(0.0), _b2(0.0),
     _m1(30.0),
     _m2(20.0),
     _l1(3.0),
     _l2(4.0),
-    _dt(dt)
+    _n(n)
 {
 }
 
@@ -50,10 +50,10 @@ void DoublePendulumThread::reset()
 void DoublePendulumThread::move(qreal dt)
 {
     qreal g = 9.81;
-    int n = dt / _dt;
+    qreal ddt = dt / qreal(_n);
 
-//    qDebug("%d", n);
-    for (int i = 0; i < n; ++i) {
+//    qDebug("%f / %d = %f us", dt, _n, ddt * 1.0e6);
+    for (int i = 0; i < _n; ++i) {
         qreal cosa2a1 = cos(_a2-_a1);
         qreal sina2a1 = sin(_a2-_a1);
         qreal cosa1 = cos(_a1);
@@ -67,9 +67,9 @@ void DoublePendulumThread::move(qreal dt)
                   +cosa2*g*(36*_m2+12*_m1)+18*cosa2a1*sina2a1*_b2*_b2*_l2*_l2*_m2)
                 /(_l2*_l2*(18*cosa2a1*cosa2a1*_m2-24*_m2-8*_m1));
 
-        _b1 += c1 * _dt;
-        _b2 += c2 * _dt;
-        _a1 += _b1 * _dt;
-        _a2 += _b2 * _dt;
+        _b1 += c1 * ddt;
+        _b2 += c2 * ddt;
+        _a1 += _b1 * ddt;
+        _a2 += _b2 * ddt;
     }
 }
