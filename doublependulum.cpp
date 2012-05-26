@@ -71,15 +71,18 @@ void DoublePendulum::timerEvent(QTimerEvent *)
 {
     qreal t = qreal(time.elapsed()) / 1000.0;
     qreal dt = t - lastTime;
+
+    static int fps = 0;
+    fps++;
+    if (fmod(t, 1.0) < fmod(lastTime, 1.0)) {
+        qDebug("%d fps", fps);
+        fps = 0;
+    }
     lastTime = t;
 
-//    QTime t;
-//    t.start();
-    qDebug("dt = %f", dt);
+//    qDebug("dt = %f", dt);
     thr.move(dt);
 //    thr2.move(dt);
-
-//    qDebug("%d", t.elapsed());
 
     update();
 }
