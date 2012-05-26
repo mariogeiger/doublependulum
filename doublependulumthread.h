@@ -1,14 +1,12 @@
 #ifndef SIMPHYTHREAD_H
 #define SIMPHYTHREAD_H
 
-#include <QThread>
-#include <QMutex>
+#include <qglobal.h>
 
-class DoublePendulumThread : public QThread
+class DoublePendulumThread
 {
-    Q_OBJECT
 public:
-    explicit DoublePendulumThread(QObject *parent = 0);
+    explicit DoublePendulumThread(qreal dt = 500e-6);
 
     void getA1A2(qreal *_a1, qreal *_a2);
 
@@ -18,12 +16,9 @@ public:
     void setParameters(qreal m1, qreal m2, qreal l1, qreal l2, qreal theta1, qreal theta2);
     void reset();
 
-    void stop();
+    void move(qreal dt);
 
 private:
-    void run();
-    QMutex mutex;
-
     qreal _a01, _a02;
 
     qreal _a1, _b1;
@@ -34,7 +29,7 @@ private:
     qreal _l1;
     qreal _l2;
 
-    bool _stop;
+    qreal _dt;
 };
 
 #endif // SIMPHYTHREAD_H

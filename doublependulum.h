@@ -2,6 +2,7 @@
 #define WIDGET_H
 
 #include <QtGui/QWidget>
+#include <QTime>
 #include "doublependulumthread.h"
 
 class DoublePendulum : public QWidget
@@ -21,7 +22,9 @@ private:
     void paintEvent(QPaintEvent *);
     void timerEvent(QTimerEvent *);
 
+    QTime time;
     DoublePendulumThread thr;
+    DoublePendulumThread thr2;
     QPainterPath path;
 };
 

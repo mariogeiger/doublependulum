@@ -14,6 +14,9 @@ class Form : public QWidget
 public:
     explicit Form(QWidget *parent = 0);
     ~Form();
+
+    void saveSettings();
+    void loadSettings();
     
 private slots:
     void giveGuiDataToDoublePendulum();
