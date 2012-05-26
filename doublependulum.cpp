@@ -69,11 +69,13 @@ void DoublePendulum::paintEvent(QPaintEvent *)
 
 void DoublePendulum::timerEvent(QTimerEvent *)
 {
-    qreal dt = qreal(time.restart()) / 1000.0;
+    qreal t = qreal(time.elapsed()) / 1000.0;
+    qreal dt = t - lastTime;
+    lastTime = t;
 
 //    QTime t;
 //    t.start();
-
+    qDebug("dt = %f", dt);
     thr.move(dt);
 //    thr2.move(dt);
 

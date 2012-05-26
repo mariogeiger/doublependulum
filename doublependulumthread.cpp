@@ -52,6 +52,7 @@ void DoublePendulumThread::move(qreal dt)
     qreal g = 9.81;
     int n = dt / _dt;
 
+//    qDebug("%d", n);
     for (int i = 0; i < n; ++i) {
         qreal cosa2a1 = cos(_a2-_a1);
         qreal sina2a1 = sin(_a2-_a1);

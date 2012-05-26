@@ -23,6 +23,7 @@ private:
     void timerEvent(QTimerEvent *);
 
     QTime time;
+    qreal lastTime;
     DoublePendulumThread thr;
     DoublePendulumThread thr2;
     QPainterPath path;
